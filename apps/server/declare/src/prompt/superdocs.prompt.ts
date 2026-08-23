@@ -1,0 +1,4 @@
+import type { StatementsResult } from "../types/statement.type";
+
+export const buildSuperdocsMessage = (statements: StatementsResult): string =>
+  `Update the manuscript with these reviewed statements. Replace existing Author Contributions, Funding, and Competing Interests sections, or add one complete statements block at the end of the manuscript.\n\nKeep the section heading with its content. If there is not enough room on the current page for the heading and its first paragraph, start the complete statements block on a new page. Never leave an Author Contributions heading alone at the bottom of a page.\n\nUse this exact content:\n\n${statements.contributionStatement}\n\n${statements.fundingStatement}\n\n${statements.conflictStatement}\n\nDo not change the CRediT role mapping or rewrite the statements.`;

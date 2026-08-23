@@ -1,4 +1,5 @@
 import { env } from "../config/env.config";
+import { buildSuperdocsMessage } from "../prompt/superdocs.prompt";
 import type {
   SuperdocsApplyRequest,
   SuperdocsApproveRequest,
@@ -6,7 +7,7 @@ import type {
   SuperdocsJob,
   SuperdocsUploadRequest,
 } from "../types/superdocs.type";
-import { buildStatements, buildSuperdocsMessage } from "./statement.utils";
+import { buildStatements } from "./statement.utils";
 
 const baseUrl = () => env.SUPERDOCS_BASE_URL.replace(/\/$/, "");
 

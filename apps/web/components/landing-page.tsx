@@ -8,19 +8,19 @@ const steps = [
   ["03", "Review with confidence", "Approve CRediT roles before they reach your manuscript."],
 ];
 
+const WorkflowIllustration = ({ step }: { step: number }) => {
+  if (step === 0) return <div className="relative h-36 overflow-hidden rounded-xl bg-[#dfeee8]"><div className="absolute left-8 top-7 grid grid-cols-4 gap-2">{Array.from({ length: 12 }).map((_, index) => <span key={index} className={`size-5 rounded-md border border-[#8ba89d] ${[1, 5, 6, 10].includes(index) ? "bg-[#8ecdb8]" : "bg-white/60"}`} />)}</div><span className="absolute left-10 top-9 size-2 rounded-full bg-zinc-900" /><span className="absolute bottom-8 right-10 size-2 rounded-full bg-zinc-900" /></div>;
+  if (step === 1) return <div className="relative h-36 overflow-hidden rounded-xl bg-[#f6e5eb]"><span className="absolute left-10 top-10 size-3 rounded-full border-2 border-zinc-800 bg-white" /><span className="absolute right-12 top-7 size-3 rounded-full border-2 border-zinc-800 bg-[#f0aebd]" /><span className="absolute bottom-8 left-20 size-3 rounded-full border-2 border-zinc-800 bg-[#f0aebd]" /><i className="absolute left-[3.2rem] top-[3.1rem] h-px w-28 rotate-[-15deg] bg-zinc-700" /><i className="absolute left-[5.8rem] top-[4.8rem] h-px w-20 rotate-[45deg] bg-zinc-700" /><i className="absolute left-[8rem] top-[3.6rem] h-px w-20 rotate-[-46deg] bg-zinc-700" /></div>;
+  return <div className="relative h-36 overflow-hidden rounded-xl bg-[#e3edf7]"><div className="absolute left-12 top-7 h-20 w-24 border-b-2 border-l-2 border-zinc-800" /><i className="absolute left-14 top-[4.9rem] h-px w-12 rotate-[-28deg] bg-zinc-800" /><i className="absolute left-[6.6rem] top-[3.8rem] h-px w-10 rotate-[35deg] bg-zinc-800" /><i className="absolute left-[8.2rem] top-[3.1rem] h-px w-9 rotate-[-27deg] bg-zinc-800" /><span className="absolute left-14 top-[4.7rem] size-2 rounded-full border-2 border-zinc-900 bg-white" /><span className="absolute left-[6.3rem] top-[3.55rem] size-2 rounded-full border-2 border-zinc-900 bg-white" /><span className="absolute left-[8rem] top-[2.85rem] size-2 rounded-full border-2 border-zinc-900 bg-[#8cc6e3]" /></div>;
+};
+
 export const LandingPage = () => (
   <main className="min-h-svh bg-[#fdfdfc] text-[#171717]">
     <SiteHeader />
 
     <section className="mx-auto flex max-w-[980px] flex-col items-center px-6 pb-24 pt-20 text-center sm:pt-28">
       <div className="mb-8 flex h-24 w-48 items-center justify-center overflow-hidden rounded-[2rem] bg-[#e9f3ef] sm:h-28 sm:w-56">
-        <div className="relative grid grid-cols-4 gap-2">
-          {Array.from({ length: 16 }).map((_, index) => (
-            <span key={index} className={`size-3 rounded-sm border border-zinc-400 ${[1, 5, 6, 10, 14].includes(index) ? "bg-[#9edbc9]" : "bg-white/70"}`} />
-          ))}
-          <span className="absolute left-1 top-1 size-2 rounded-full bg-zinc-900" />
-          <span className="absolute bottom-1 right-1 size-2 rounded-full bg-zinc-900" />
-        </div>
+        <div className="relative grid grid-cols-4 gap-2">{Array.from({ length: 16 }).map((_, index) => <span key={index} className={`size-3 rounded-sm border border-zinc-400 ${[1, 5, 6, 10, 14].includes(index) ? "bg-[#9edbc9]" : "bg-white/70"}`} />)}<span className="absolute left-1 top-1 size-2 rounded-full bg-zinc-900" /><span className="absolute bottom-1 right-1 size-2 rounded-full bg-zinc-900" /></div>
       </div>
       <p className="mb-5 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">A Slate product · Research authorship, clarified</p>
       <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.96] tracking-[-0.045em] sm:text-7xl">
@@ -33,16 +33,17 @@ export const LandingPage = () => (
         <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-700">
           Get started <ArrowUpRight className="size-4" />
         </Link>
-        <a href="#how-it-works" className="rounded-full bg-zinc-100 px-5 py-2.5 text-sm font-medium transition hover:bg-zinc-200">How it works</a>
+        <Link href="#how-it-works" className="rounded-full bg-zinc-100 px-5 py-2.5 text-sm font-medium transition hover:bg-zinc-200">How it works</Link>
       </div>
     </section>
 
     <section id="how-it-works" className="mx-auto grid max-w-[980px] gap-5 px-6 pb-28 md:grid-cols-3 sm:px-0">
       {steps.map(([number, title, description], index) => {
         const Icon = [UsersRound, Sparkles, FileText][index]!;
-        return <article key={number} className="rounded-2xl bg-[#f2f2ef] p-6">
-          <div className="flex items-center justify-between text-xs font-medium text-zinc-500"><span>{number}</span><Icon className="size-5 text-zinc-700" /></div>
-          <h2 className="mt-16 text-xl font-medium tracking-tight">{title}</h2>
+        return <article key={number} className="rounded-2xl bg-[#f2f2ef] p-4 sm:p-5">
+          <WorkflowIllustration step={index} />
+          <div className="mt-5 flex items-center justify-between text-xs font-medium text-zinc-500"><span>{number}</span><Icon className="size-5 text-zinc-700" /></div>
+          <h2 className="mt-7 text-xl font-semibold tracking-tight text-zinc-950">{title}</h2>
           <p className="mt-2 max-w-xs text-sm leading-6 text-zinc-600">{description}</p>
         </article>;
       })}

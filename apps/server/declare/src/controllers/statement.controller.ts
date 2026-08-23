@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import { ZodError } from "zod";
 import { statementsRequestSchema } from "../schema/statement.schema";
-import { buildStatements, getStatementValidationIssues } from "../utils/statement.utils";
+import { getStatementValidationIssues } from "../utils/review.utils";
+import { buildStatements } from "../utils/statement.utils";
 
 export const statements = async (req: Request, res: Response) => {
   try {

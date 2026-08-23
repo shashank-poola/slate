@@ -13,7 +13,7 @@ import {
   startSuperdocsApply,
   uploadSuperdocsDocument,
 } from "../utils/superdocs.utils";
-import { getStatementValidationIssues } from "../utils/statement.utils";
+import { getStatementValidationIssues } from "../utils/review.utils";
 
 export const apply = async (req: Request, res: Response) => {
   try {

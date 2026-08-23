@@ -41,7 +41,7 @@ export const createStatements = (facts: DeclareFacts) => request<{
 }>("/declare/statements", facts);
 
 export const uploadManuscript = (input: { sessionId: string; filename: string; fileBase64: string }) =>
-  request<unknown>("/superdocs/upload", { ...input, returnHtml: true });
+  request<{ html?: string; document_html?: string }>("/superdocs/upload", { ...input, returnHtml: true });
 
 export const applyStatements = (input: { sessionId: string; facts: DeclareFacts }) =>
   request<{ job_id: string; session_id: string; status: string }>("/superdocs/apply", { ...input, approvalMode: "ask_every_time" });

@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import type { StatementsRequest } from "../src/types/statement.type";
-import { buildStatements, getStatementValidationIssues } from "../src/utils/statement.utils";
+import { getStatementValidationIssues } from "../src/utils/review.utils";
+import { buildStatements } from "../src/utils/statement.utils";
 
 const reviewedFacts: StatementsRequest = {
   authors: [
