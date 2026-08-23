@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Check, FileText, Sparkles, UsersRound } from "lucide-react";
+import { ArrowUpRight, Check, FileCheck2, FileText, MessageSquareText, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { SiteHeader } from "./site-header";
 
 const steps = [
@@ -60,9 +60,59 @@ export const LandingPage = () => (
       </div>
     </section>
 
-    <footer className="mx-auto flex max-w-[980px] flex-col gap-4 px-6 py-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:px-0">
-      <span>© 2026 Slate. Research authorship, clearly declared.</span>
-      <Link href="/dashboard" className="text-zinc-800 hover:underline">Open Declare</Link>
+    <section className="mx-auto max-w-[980px] px-6 py-24 sm:px-0">
+      <div className="max-w-2xl">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">The Declare workflow</p>
+        <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl leading-none tracking-[-0.035em] sm:text-5xl">From rough notes to a manuscript-ready record.</h2>
+      </div>
+      <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-200 md:grid-cols-4">
+        {[
+          ["01", "Capture", "Add authors and the notes your team already has."],
+          ["02", "Map", "Declare proposes only valid CRediT roles and keeps uncertain work open."],
+          ["03", "Confirm", "Review exact evidence, roles, funding and conflicts before generating language."],
+          ["04", "Apply", "Send approved statements to SuperDocs, approve the change, then export."],
+        ].map(([number, title, description]) => <article key={number} className="bg-[#fdfdfc] p-6"><span className="text-xs font-medium text-zinc-500">{number}</span><h3 className="mt-10 text-lg font-medium">{title}</h3><p className="mt-2 text-sm leading-6 text-zinc-600">{description}</p></article>)}
+      </div>
+    </section>
+
+    <section className="border-y border-zinc-200 bg-[#f3f5f1]">
+      <div className="mx-auto grid max-w-[980px] gap-12 px-6 py-24 sm:px-0 md:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">A Slate product</p>
+          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl leading-none tracking-[-0.035em]">Focused tools for the parts of research that deserve care.</h2>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-3">
+          {[
+            [ShieldCheck, "Controlled vocabulary", "Roles are checked against the CRediT standard before they can be used."],
+            [FileCheck2, "Reviewed facts", "The final wording comes from the researcher's approved record, not a second guess."],
+            [MessageSquareText, "Document handoff", "SuperDocs proposes manuscript edits that researchers can accept or reject."],
+          ].map(([Icon, title, description]) => {
+            const FeatureIcon = Icon as typeof ShieldCheck;
+            return <article key={title as string} className="rounded-2xl bg-white p-5"><FeatureIcon className="size-5 text-zinc-500" /><h3 className="mt-10 font-medium">{title as string}</h3><p className="mt-2 text-sm leading-6 text-zinc-600">{description as string}</p></article>;
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section className="mx-auto max-w-[980px] px-6 py-24 sm:px-0">
+      <div className="grid gap-12 md:grid-cols-[0.75fr_1.25fr]">
+        <div><p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">Before submission</p><h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl leading-none tracking-[-0.035em]">One small, accountable final pass.</h2></div>
+        <div className="space-y-4">
+          {[
+            ["Does Declare decide who is an author?", "No. Your research team supplies the author list. Declare maps the described work to CRediT roles; it does not make authorship decisions."],
+            ["What happens when a contribution is vague?", "It stays marked as needing clarification. Declare does not force a role when the evidence is not specific enough."],
+            ["Are funding and conflicts treated as contributor roles?", "No. They are reviewed separately and only appear in their own publication statements."],
+            ["How does the manuscript step work?", "After you approve the statements, SuperDocs proposes a document edit. You can inspect, approve or reject it before exporting the finished file."],
+          ].map(([question, answer]) => <details key={question} className="group border-b border-zinc-200 py-4"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-medium">{question}<span className="text-xl font-normal text-zinc-400 transition group-open:rotate-45">+</span></summary><p className="max-w-2xl pt-3 text-sm leading-6 text-zinc-600">{answer}</p></details>)}
+        </div>
+      </div>
+    </section>
+
+    <footer className="border-t border-zinc-200">
+      <div className="mx-auto flex max-w-[980px] flex-col gap-4 px-6 py-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:px-0">
+        <span>© 2026 Slate. Research authorship, clearly declared.</span>
+        <Link href="/dashboard" className="text-zinc-800 hover:underline">Open Declare</Link>
+      </div>
     </footer>
   </main>
 );
