@@ -23,6 +23,7 @@
   },
   "workspaces": [
     "apps/*",
+    "apps/server/*",
     "packages/*"
   ]
 }
