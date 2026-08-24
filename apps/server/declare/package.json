@@ -4,8 +4,11 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch src/index.ts",
-    "start": "bun src/index.ts",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "cf:typegen": "wrangler types ./cloudflare-env.d.ts",
+    "deploy": "wrangler deploy",
+    "deploy:dry-run": "wrangler deploy --dry-run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests",
     "test": "bun test"
@@ -16,7 +19,8 @@
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "eslint": "^9.39.5",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.125.0"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.3",
