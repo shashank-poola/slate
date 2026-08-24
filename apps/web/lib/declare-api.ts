@@ -44,7 +44,7 @@ export const uploadManuscript = (input: { sessionId: string; filename: string; f
   request<{ html?: string; document_html?: string }>("/superdocs/upload", { ...input, returnHtml: true });
 
 export const applyStatements = (input: { sessionId: string; facts: DeclareFacts }) =>
-  request<{ job_id: string; session_id: string; status: string }>("/superdocs/apply", { ...input, approvalMode: "ask_every_time" });
+  request<{ job_id: string; session_id: string; status: string }>("/superdocs/apply", { ...input, approvalMode: "approve_all" });
 
 export const getSuperdocsJob = (jobId: string) => request<Record<string, unknown>>(`/superdocs/jobs/${jobId}`);
 

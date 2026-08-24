@@ -1,4 +1,5 @@
 import type { StatementsResult } from "../types/statement.type";
+import { buildStatementsHtml } from "../utils/statement.utils";
 
 export const buildSuperdocsMessage = (statements: StatementsResult): string =>
-  `Update the manuscript with these reviewed statements. Replace existing Author Contributions, Funding, and Competing Interests sections, or add one complete statements block at the end of the manuscript.\n\nKeep the section heading with its content. If there is not enough room on the current page for the heading and its first paragraph, start the complete statements block on a new page. Never leave an Author Contributions heading alone at the bottom of a page.\n\nUse this exact content:\n\n${statements.contributionStatement}\n\n${statements.fundingStatement}\n\n${statements.conflictStatement}\n\nDo not change the CRediT role mapping or rewrite the statements.`;
+  `Append the exact HTML block below at the very end of the manuscript as one insertion. Do not edit, replace, match, reuse, or infer from existing manuscript text. Do not split the block into separate edits. Do not change any wording.\n\n${buildStatementsHtml(statements)}`;

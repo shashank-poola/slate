@@ -1,6 +1,15 @@
 import { creditRoleById } from "../config/credit.config";
 import type { StatementsRequest, StatementsResult } from "../types/statement.type";
 
+const escapeHtml = (value: string): string =>
+  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+const statementToHtml = (statement: string): string => {
+  const [heading, body = ""] = statement.split("\n\n");
+  const paragraphs = body.split("\n").filter(Boolean).map((line) => `<p>${escapeHtml(line)}</p>`).join("");
+  return `<h2>${escapeHtml(heading ?? "")}</h2>${paragraphs}`;
+};
+
 export const buildStatements = (facts: StatementsRequest): StatementsResult => {
   const rolesByAuthor = new Map<string, Set<string>>();
 
@@ -40,3 +49,6 @@ export const buildStatements = (facts: StatementsRequest): StatementsResult => {
     conflictStatement,
   };
 };
+
+export const buildStatementsHtml = (statements: StatementsResult): string =>
+  `<section data-declare-statements="true">${statementToHtml(statements.contributionStatement)}${statementToHtml(statements.fundingStatement)}${statementToHtml(statements.conflictStatement)}</section>`;

@@ -1,4 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight, Check, FileCheck2, FileText, MessageSquareText, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { SiteHeader } from "./site-header";
 
@@ -47,6 +50,32 @@ export const LandingPage = () => (
           <p className="mt-2 max-w-xs text-sm leading-6 text-zinc-600">{description}</p>
         </article>;
       })}
+    </section>
+
+    <section className="border-y border-zinc-200 bg-white">
+      <div className="mx-auto max-w-[980px] px-6 py-20 text-center sm:px-0 sm:py-24">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">A connected research handoff</p>
+        <h2 className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-none tracking-[-0.035em] sm:text-5xl">One clear record, from authorship to manuscript.</h2>
+        <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-zinc-600">Declare keeps approved contribution facts together as your work moves from Slate, through the manuscript, and into the next research conversation.</p>
+
+        <div className="mx-auto mt-9 inline-flex items-center gap-2 rounded-[1.75rem] bg-[#f0f1ee] p-3 shadow-[0_18px_45px_rgba(24,24,24,0.10)] sm:gap-4 sm:p-4">
+          {[
+            { src: "/icons/slate.png", name: "Slate" },
+            { src: "/icons/superdocs.png", name: "SuperDocs" },
+            { src: "/icons/chatgpt.png", name: "ChatGPT" },
+          ].map(({ src, name }, index) => <div key={name} className="flex items-center gap-2 sm:gap-4"><div className={`flex size-14 items-center justify-center rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm sm:size-16 ${name === "Slate" ? "bg-zinc-950" : ""}`}><Image src={src} alt={`${name} logo`} width={48} height={48} className={`h-full w-full object-contain ${name === "Slate" ? "brightness-0 invert" : ""}`} /></div>{index < 2 && <HugeiconsIcon icon={ArrowRight01Icon} size={18} strokeWidth={1.5} className="text-zinc-400" />}</div>)}
+        </div>
+
+        <div className="mx-auto mt-12 grid max-w-3xl gap-4 text-left sm:mt-14 sm:grid-cols-3">
+          {[
+            ["Slate", "Capture the people, evidence, funding, and disclosures behind the work."],
+            ["SuperDocs", "Apply the approved publication statements as one proposed manuscript edit."],
+            ["ChatGPT", "Carry a clear, researcher-approved record into the next working conversation."],
+          ].map(([name, description]) => <div key={name} className="rounded-xl bg-[#f7f7f5] p-4"><p className="font-medium text-zinc-950">{name}</p><p className="mt-1.5 text-sm leading-6 text-zinc-600">{description}</p></div>)}
+        </div>
+
+        <Link href="/dashboard" className="mt-8 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-700">Start with Declare <HugeiconsIcon icon={ArrowRight01Icon} size={16} strokeWidth={1.8} /></Link>
+      </div>
     </section>
 
     <section id="about" className="border-y border-zinc-200 bg-white">
