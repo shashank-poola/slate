@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   title: "Declare — Research authorship, clarified",
   description: "Review CRediT contribution roles and generate researcher-approved statements.",
+  icons: {
+    icon: [{ url: "/icons/slate.png", type: "image/png" }],
+    shortcut: ["/icons/slate.png"],
+    apple: [{ url: "/icons/slate.png", type: "image/png" }],
+  },
   openGraph: {
     title: "Declare",
     description: "Research authorship, clarified.",
